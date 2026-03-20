@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>家电技修宝典</title>
+    <link href="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-100-M/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://s2.ssl.qhres2.com/static/56662140ef7d5d03.css"  rel="stylesheet">
+    <style>
+        :root {
+            --tcl-primary: #E60012;
+            --tcl-secondary: #0056B3;
+            --tcl-light: #F5F5F5;
+            --tcl-dark: #333333;
+            --tcl-accent: #FFD700;
+        }
+{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: var(--tcl-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 100%;
+            padding: 0 15px;
+            margin: 0 auto;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--tcl-primary), var(--tcl-secondary));
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-bottom: 4px solid var(--tcl-accent);
+        }
+        
+        header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            position: relative;
+            display: inline-block;
+        }
+        
+        header h1::after {
+            content: "";
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: var(--tcl-accent);
+            border-radius: 3px;
+        }
+        
+        .main-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding: 20px 0;
+        }
+        
+        .appliance-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .appliance-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.12);
+        }
+        
+        .appliance-header {
+            background: linear-gradient(to right, var(--tcl-primary), var(--tcl-secondary));
+            color: white;
+            padding: 15px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .appliance-header i {
+            font-size: 1.5rem;
+        }
+        
+        .brand-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            padding: 15px;
+        }
+        
+        .brand-item {
+            background: var(--tcl-light);
+            border-radius: 8px;
+            padding: 12px;
+            text-align: center;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        
+        .brand-item:hover {
+            background: var(--tcl-primary);
+            color: white;
+            transform: scale(1.03);
+        }
+        
+        .doc-type-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            padding: 15px;
+        }
+        
+        .doc-type-item {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .doc-type-item i {
+            font-size: 1.5rem;
+            color: var(--tcl-primary);
+        }
+        
+        .doc-type-item:hover {
+            background: var(--tcl-primary);
+            color: white;
+        }
+        
+        .doc-type-item:hover i {
+            color: white;
+        }
+        
+        .back-button {
+            display: inline-block;
+            margin: 15px 0;
+            padding: 8px 15px;
+            background: var(--tcl-light);
+            border-radius: 20px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        
+        .back-button:hover {
+            background: var(--tcl-primary);
+            color: white;
+        }
+        
+        .search-box {
+            margin: 15px 0;
+            position: relative;
+        }
+        
+        .search-box input {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 25px;
+            border: 1px solid #ddd;
+            font-size: 1rem;
+            outline: none;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .search-box input:focus {
+            border-color: var(--tcl-primary);
+            box-shadow: 0 2px 10px rgba(230, 0, 18, 0.1);
+        }
+        
+        .search-box i {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+        }
+        
+        .doc-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .doc-table th {
+            background: linear-gradient(to right, var(--tcl-primary), var(--tcl-secondary));
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .doc-table td {
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .doc-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .doc-table tr:hover {
+            background-color: rgba(230, 0, 18, 0.05);
+        }
+        
+        .query-btn {
+            background: var(--tcl-primary);
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .query-btn:hover {
+            background: var(--tcl-secondary);
+            transform: translateY(-2px);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            font-size: 14px;
+            margin-top: 30px;
+            border-top: 1px solid #eee;
+        }
+        
+        / 手绘风格装饰元素 /
+        .hand-drawn {
+            position: relative;
+        }
+        
+        .hand-drawn::before {
+            content: "";
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border: 2px dashed rgba(230, 0, 18, 0.3);
+            border-radius: 15px;
+            pointer-events: none;
+        }
+        
+        / 页面切换动画 /
+        .page {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .active {
+            display: block;
+        }
+        
+        / 响应式调整 /
+        @media (max-width: 480px) {
+            .brand-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .doc-type-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 主页面 -->
+    <div id="main-page" class="page active">
+        <header class="hand-drawn">
+            <div class="container">
+                <h1>家电技修宝典</h1>
+            </div>
+        </header>
+        
+        <div class="container">
+            <div class="main-menu">
+                <!-- 冰箱组件 -->
+                <div class="appliance-card hand-drawn">
+                    <div class="appliance-header">
+                        <span><i class="fas fa-snowflake"></i> 冰箱维修资料</span>
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                    <div class="brand-list">
+                        <div class="brand-item" onclick="showBrandPage('fridge', 'TCL')">TCL</div>
+                        <div class="brand-item" onclick="showBrandPage('fridge', '三星')">三星</div>
+                        <div class="brand-item" onclick="showBrandPage('fridge', '雪琪')">雪琪</div>
+                        <div class="brand-item" onclick="showBrandPage('fridge', '双鹿')">双鹿</div>
+                        <div class="brand-item" onclick="showBrandPage('fridge', '荣事达')">荣事达</div>
+                    </div>
+                </div>
+                
+                <!-- 洗衣机组件 -->
+                <div class="appliance-card hand-drawn">
+                    <div class="appliance-header">
+                        <span><i class="fas fa-tshirt"></i> 洗衣机维修资料</span>
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                    <div class="brand-list">
+                        <div class="brand-item" onclick="showBrandPage('washer', 'TCL')">TCL</div>
+                        <div class="brand-item" onclick="showBrandPage('washer', '石头科技')">石头科技</div>
+                        <div class="brand-item" onclick="showBrandPage('washer', '追觅科技')">追觅科技</div>
+                        <div class="brand-item" onclick="showBrandPage('washer', '三星')">三星</div>
+                        <div class="brand-item" onclick="showBrandPage('washer', 'LG')">LG</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 品牌页面 -->
+    <div id="brand-page" class="page">
+        <header class="hand-drawn">
+            <div class="container">
+                <h1 id="brand-title">品牌资料</h1>
+            </div>
+        </header>
+        
+        <div class="container">
+            <button class="back-button" onclick="backToMain()"><i class="fas fa-arrow-left"></i> 返回</button>
+            
+            <div class="doc-type-list">
+                <div class="doc-type-item" onclick="showDocPage('manual')">
+                    <i class="fas fa-book"></i>
+                    <span>维修手册</span>
+                </div>
+                <div class="doc-type-item" onclick="showDocPage('video')">
+                    <i class="fas fa-video"></i>
+                    <span>安装维修视频</span>
+                </div>
+                <div class="doc-type-item" onclick="showDocPage('tech-case')">
+                    <i class="fas fa-tools"></i>
+                    <span>技术案例</span>
+                </div>
+                <div class="doc-type-item" onclick="showDocPage('repair-case')">
+                    <i class="fas fa-clipboard-check"></i>
+                    <span>维修案例</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 维修手册页面 -->
+    <div id="manual-page" class="page">
+        <header class="hand-drawn">
+            <div class="container">
+                <h1>维修手册</h1>
+            </div>
+        </header>
+        
+        <div class="container">
+            <button class="back-button" onclick="backToBrand()"><i class="fas fa-arrow-left"></i> 返回</button>
+            
+            <div class="search-box">
+                <input type="text" placeholder="搜索型号..." id="manual-search">
+                <i class="fas fa-search"></i>
+            </div>
+            
+            <table class="doc-table">
+                <thead>
+                    <tr>
+                        <th>产品型号</th>
+                        <th>查询</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>G100T7R-HDIS、G100T7R-DIS、G120T7R-HDI、G120T7R-DI、G100T7R-HDI、G100T7R-DI</td>
+                        <td><button class="query-btn" onclick="window.open('https://pan.tcl.com/s/2tEEVufMQy8')"> 查询</button></td>
+                    </tr>
+                    <tr>
+                        <td>G100V100-HD、G100V200-HD</td>
+                        <td><button class="query-btn" onclick="window.open('https://pan.tcl.com/s/gB0ygBW6ST8')"> 查询</button></td>
+                    </tr>
+                    <tr>
+                        <td>G80L130-B、G100L130-B</td>
+                        <td><button class="query-btn" onclick="window.open('https://pan.tcl.com/s/Yw4OozccQgo')"> 查询</button></td>
+                    </tr>
+                    <tr>
+                        <td>XQG65-Q100</td>
+                        <td><button class="query-btn" onclick="window.open('https://pan.tcl.com/s/JgEXYvbdTtQ')"> 查询</button></td>
+                    </tr>
+                    <tr>
+                        <td>G100T7-DI、G100T7-HDI</td>
+                        <td><button class="query-btn" onclick="window.open('https://pan.tcl.com/s/kRCkVW8qQEQ')"> 查询</button></td>
+                    </tr>
+                    <tr>
+                        <td>G100P2-DI</td>
+                        <td><button class="query-btn" onclick="window.open('https://pan.tcl.com/s/Ea5USQRQi4')"> 查询</button></td>
+                    </tr>
+                    <tr>
+                        <td>G100P2-D、G100P2-HD、G100P2-HDI、G100T800-HD</td>
+                        <td><button class="query-btn" onclick="window.open('https://pan.tcl.com/s/RlQYJBwbSgE')"> 查询</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <!-- 技术案例页面 -->
+    <div id="tech-case-page" class="page">
+        <header class="hand-drawn">
+            <div class="container">
+                <h1>技术案例</h1>
+            </div>
+        </header>
+        
+        <div class="container">
+            <button class="back-button" onclick="backToBrand()"><i class="fas fa-arrow-left"></i> 返回</button>
+            
+            <div class="search-box">
+                <input type="text" placeholder="搜索型号..." id="tech-case-search">
+                <i class="fas fa-search"></i>
+            </div>
+            
+            <table class="doc-table">
+                <thead>
+                    <tr>
+                        <th>产品型号</th>
+                        <th>故障现象</th>
+                        <th>技改部件</th>
+                        <th>查询</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>G120T6-B</td>
+                        <td>冬天报E6</td>
+                        <td>显示板</td>
+                        <td><button class="query-btn" onclick="window.open('https://pan.tcl.com/s/tGZVry0sRRY')"> 查询</button></td>
+                    </tr>
+                    <tr>
+                        <td>G70L120-B</td>
+                        <td>冬天报E7</td>
+                        <td>显示板</td>
+                        <td><button class="query-btn" onclick="window.open('https://pan.tcl.com/s/6Ecwg7HSEk')"> 查询</button></td>
+                    </tr>
+                    <tr>
+                        <td>T10套装</td>
+                        <td>冬天报E71</td>
+                        <td>主板</td>
+                        <td><button class="query-btn" onclick="window.open('https://pan.tcl.com/s/NwL5f9s8SXs')"> 查询</button></td>
+                    </tr>
+                    <tr>
+                        <td>G70L120-B</td>
+                        <td>冬天报E7</td>
+                        <td>显示板</td>
+                        <td><button class="query-btn" onclick="window.open('https://pan.tcl.com/s/6Ecwg7HSEk')"> 查询</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <!-- 安装维修视频页面 -->
+    <div id="video-page" class="page">
+        <header class="hand-drawn">
+            <div class="container">
+                <h1>安装维修视频</h1>
+            </div>
+        </header>
+        
+        <div class="container">
+            <button class="back-button" onclick="backToBrand()"><i class="fas fa-arrow-left"></i> 返回</button>
+            
+            <div class="search-box">
+                <input type="text" placeholder="搜索视频..." id="video-search">
+                <i class="fas fa-search"></i>
+            </div>
+            
+            <table class="doc-table">
+                <thead>
+                    <tr>
+                        <th>产品分类</th>
+                        <th>视频名称</th>
+                        <th>查询</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>波轮洗衣机</td>
+                        <td>波轮洗衣机安装视频</td>
+                        <td><button class="query-btn" onclick="window.open('https://pan.tcl.com/s/E88q8VMaRX4')"> 查询</button></td>
+                    </tr>
+                    <tr>
+                        <td>滚筒洗衣机</td>
+                        <td>滚筒洗衣机安装视频</td>
+                        <td><button class="query-btn" onclick="window.open('https://pan.tcl.com/s/CtITp1H9Qb4')"> 查询</button></td>
+                    </tr>
+                    <tr>
+                        <td>集成一体机</td>
+                        <td>新品T10安装视频</td>
+                        <td><button class="query-btn" onclick="window.open('https://pan.tcl.com/s/CbMtcOETNA')"> 查询</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <!-- 维修案例页面 -->
+    <div id="repair-case-page" class="page">
+        <header class="hand-drawn">
+            <div class="container">
+                <h1>维修案例</h1>
+            </div>
+        </header>
+        
+        <div class="container">
+            <button class="back-button" onclick="backToBrand()"><i class="fas fa-arrow-left"></i> 返回</button>
+            
+            <div class="search-box">
+                <input type="text" placeholder="搜索型号..." id="repair-case-search">
+                <i class="fas fa-search"></i>
+            </div>
+            
+            <table class="doc-table">
+                <thead>
+                    <tr>
+                        <th>产品型号</th>
+                        <th>故障现象</th>
+                        <th>查询</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>G120T6-B</td>
+                        <td>冬天报E6</td>
+                        <td><button class="query-btn" onclick="window.open('https://pan.tcl.com/s/tGZVry0sRRY')"> 查询</button></td>
+                    </tr>
+                    <tr>
+                        <td>G70L120-B</td>
+                        <td>冬天报E7</td>
+                        <td><button class="query-btn" onclick="window.open('https://pan.tcl.com/s/6Ecwg7HSEk')"> 查询</button></td>
+                    </tr>
+                    <tr>
+                        <td>T10套装</td>
+                        <td>冬天报E71</td>
+                        <td><button class="query-btn" onclick="window.open('https://pan.tcl.com/s/NwL5f9s8SXs')"> 查询</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <footer>
+        <p>以上内容由AI搜集并生成，仅供参考</p>
+    </footer>
+    
+    <script>
+        // 当前页面状态
+        let currentAppliance = '';
+        let currentBrand = '';
+        
+        // 显示品牌页面
+        function showBrandPage(appliance, brand) {
+            currentAppliance = appliance;
+            currentBrand = brand;
+            
+            document.getElementById('brand-title').textContent = brand + (appliance === 'fridge' ? '冰箱' : '洗衣机') + '资料';
+            
+            document.getElementById('main-page').classList.remove('active');
+            document.getElementById('brand-page').classList.add('active');
+        }
+        
+        // 显示文档页面
+        function showDocPage(docType) {
+            document.getElementById('brand-page').classList.remove('active');
+            
+            switch(docType) {
+                case 'manual':
+                    document.getElementById('manual-page').classList.add('active');
+                    break;
+                case 'video':
+                    document.getElementById('video-page').classList.add('active');
+                    break;
+                case 'tech-case':
+                    document.getElementById('tech-case-page').classList.add('active');
+                    break;
+                case 'repair-case':
+                    document.getElementById('repair-case-page').classList.add('active');
+                    break;
+            }
+        }
+        
+        // 返回品牌页面 
+        function backToBrand() {
+            document.getElementById('manual-page').classList.remove('active');
+            document.getElementById('video-page').classList.remove('active');
+            document.getElementById('tech-case-page').classList.remove('active');
+            document.getElementById('repair-case-page').classList.remove('active');
+            
+            document.getElementById('brand-page').classList.add('active');
+        }
+        
+        // 返回主页面
+        function backToMain() {
+            document.getElementById('brand-page').classList.remove('active');
+            document.getElementById('main-page').classList.add('active');
+        }
+        
+        // 搜索功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInputs = document.querySelectorAll('.search-box input');
+            
+            searchInputs.forEach(input => {
+                input.addEventListener('input', function() {
+                    const searchTerm = this.value.toLowerCase();
+                    const tableId = this.id.replace('-search', '-page');
+                    const table = document.getElementById(tableId).querySelector('tbody');
+                    const rows = table.getElementsByTagName('tr');
+                    
+                    for (let row of rows) {
+                        const cells = row.getElementsByTagName('td');
+                        let rowText = '';
+                        
+                        for (let cell of cells) {
+                            rowText += cell.textContent.toLowerCase() + ' ';
+                        }
+                        
+                        if (rowText.includes(searchTerm)) {
+                            row.style.display = '';
+                        } else {
+                            row.style.display = 'none';
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+以上内容均由AI搜集总结并生成，仅供参考
